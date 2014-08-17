@@ -1,0 +1,75 @@
+"axe_cleave"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"    "axe_counter_helix"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"2000"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.5"	// Applies multiple modifiers
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Creature.Axe_Counter.Cast"
+				"Target"		"CASTER"
+			}
+			
+			"FireEffect"
+			{
+				"EffectName" "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf"
+				"EffectAttachType" "follow_origin"
+				"ControlPoints"
+				{
+					"00" "0 0 0"
+					"01" "%crush_radius"
+				}
+			}
+
+			"Damage"
+			{
+				"Type" "DAMAGE_TYPE_PHYSICAL"
+				"Damage" "%AbilityDamage"
+				"Target"
+				{
+					"Center" "CASTER"
+					"Radius" "%crush_radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
+				}
+			}
+		}
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"crush_radius"					"350"
+			}
+		}
+	}

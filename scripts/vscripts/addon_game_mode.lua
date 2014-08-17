@@ -49,7 +49,7 @@ function CAddonTemplateGameMode:OnNPCSpawned(tbl)
             npc:HeroLevelUp( false )
         end
         npc:SetGold(1000, false)
-        --CreateHeroForPlayer("npc_dota_hero_axe", npc:GetOwner())
+        --CreateHeroForPlayer("npc_dota_hero_axe_arena", npc:GetOwner())
     end
 end
 

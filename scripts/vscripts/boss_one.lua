@@ -22,7 +22,7 @@ function AIThink() -- For some reason AddThinkToEnt doesn't accept member functi
 			{
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
-				Target = ThreadSys:GetTopOne():entindex()
+				Target = ThreadSys:GetTopOne()
 			}
 			ExecuteOrderFromTable(order)
 			prevAggro = ThreadSys:GetTopOne()
@@ -35,7 +35,7 @@ function Hurt(tab)
 	if ent == thisEntity then
 		local atk = EntIndexToHScript(tab.entindex_attacker)
 		local thread = 0
-		if atk:GetClassname() == "npc_dota_hero_axe" then
+		if atk:GetClassname() == "npc_dota_hero_axe_arena" then
 			thread = (prevLife - ent:GetHealth()) * 3
 		else
 			thread = (prevLife - ent:GetHealth())

@@ -1,49 +1,83 @@
-// Dota Heroes File
+//Generated using Dota Custom File Generator by cris9696
 "DOTAAbilities"
 {
-	"Version"		"1"
 
-	//=================================================================================================================
-	// Templar Assassin: Refraction Holdout
-	//=================================================================================================================
-	"templar_assassin_refraction_holdout"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17.0 17.0 17.0 17.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+	//Start of file axe_cleave.txt
+	"axe_cleave"
 		{
-			"01"
+			// General
+			//-------------------------------------------------------------------------------------------------------------
+			"BaseClass"				"ability_datadriven"
+			"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"	
+			"AbilityTextureName"    "axe_counter_helix"
+		
+			// Casting
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastRange"				"0"
+			"AbilityCastPoint"				"0"
+	
+			// Time		
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"				"8.0"
+	
+			// Damage.
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityDamage"					"2000"
+	
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"100"
+	
+			// Stats
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityModifierSupportValue"	"0.5"	// Applies multiple modifiers
+	
+			"OnSpellStart"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_absorb"				"200 300 400 500"
+				"FireSound"
+				{
+					"EffectName"	"Creature.Axe_Counter.Cast"
+					"Target"		"CASTER"
+				}
+				
+				"FireEffect"
+				{
+					"EffectName" "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf"
+					"EffectAttachType" "follow_origin"
+					"ControlPoints"
+					{
+						"00" "0 0 0"
+						"01" "%crush_radius"
+					}
+				}
+	
+				"Damage"
+				{
+					"Type" "DAMAGE_TYPE_PHYSICAL"
+					"Damage" "%AbilityDamage"
+					"Target"
+					{
+						"Center" "CASTER"
+						"Radius" "%crush_radius"
+						"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+						"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
+					}
+				}
 			}
-			"02"
+	
+	
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 40 60 80"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"17.0 17.0 17.0 17.0"
+				"01"
+				{
+					"var_type"						"FIELD_INTEGER"
+					"crush_radius"					"350"
+				}
 			}
 		}
-	}
+	//End of file axe_cleave.txt
 }
